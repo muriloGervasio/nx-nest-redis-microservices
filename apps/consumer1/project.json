@@ -1,0 +1,24 @@
+{
+  "name": "consumer1",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/consumer1/src",
+  "projectType": "application",
+  "targets": {
+    "serve": {
+      "executor": "@nx/js:node",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "consumer1:build"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "consumer1:build:development"
+        },
+        "production": {
+          "buildTarget": "consumer1:build:production"
+        }
+      }
+    }
+  },
+  "tags": []
+}
