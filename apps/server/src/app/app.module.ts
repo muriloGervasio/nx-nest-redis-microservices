@@ -9,11 +9,13 @@ import { ClientsModule, Transport } from '@nestjs/microservices';
     ClientsModule.register([
       {
         name: 'broker',
-        transport: Transport.REDIS,
+        transport: Transport.RMQ,
         options: {
-          host: 'localhost',
-          port: 6379,
-          password: 'yourpassword',
+          urls: ['amqp://rabbitmq:rabbitmq@localhost:5672/'],
+          queue: 'cats_queue',
+          queueOptions: {
+            durable: false,
+          },
         },
       },
     ]),

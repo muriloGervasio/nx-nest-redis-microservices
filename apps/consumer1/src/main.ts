@@ -16,11 +16,15 @@ async function bootstrap() {
   const port = process.env.PORT || 3001;
 
   app.connectMicroservice<MicroserviceOptions>({
-    transport: Transport.REDIS,
+    transport: Transport.RMQ,
     options: {
-      host: 'localhost',
-      port: 6379,
-      password: 'yourpassword',
+      consumerTag: 'consumer4',
+      urls: ['amqp://rabbitmq:rabbitmq@localhost:5672/'],
+      queue: 'cats_queue',
+      queueOptions: {
+        durable: false,
+        autoDelete: false,
+      },
     },
   });
 
